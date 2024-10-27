@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity() {
 
         tv_num1 = findViewById(R.id.tv_num1)
         tv_num2 = findViewById(R.id.tv_num2)
-        val btnBorrarTodo: Button = findViewById(R.id.btn_clear)
+        val btnLimpiar: Button = findViewById(R.id.btn_clear)
+        val btnBorra: Button = findViewById(R.id.btn_borrar)
+        val btnPorc: Button = findViewById(R.id.btn_div100)
         val btnResult: Button = findViewById(R.id.btn_result)
 
         btnResult.setOnClickListener{
@@ -51,12 +53,36 @@ class MainActivity : AppCompatActivity() {
             num2 = ""
         }
 
-        btnBorrarTodo.setOnClickListener{
+        btnLimpiar.setOnClickListener{
             tv_num1.setText("")
             tv_num2.setText("")
             numero1 = 0.0
+            num2 = ""
             op = 0
         }
+
+        btnBorra.setOnClickListener {
+            var temp: String = tv_num2.text.toString()
+
+            if (temp.isNotEmpty()) {
+                temp = temp.substring(0, temp.length - 1)
+                tv_num2.text = temp
+                num2 = temp
+            }
+        }
+
+        btnPorc.setOnClickListener{
+            var temp: Double = tv_num2.text.toString().toDouble()
+
+            if (!temp.isNaN()) {
+                temp = temp / 100
+                tv_num2.text = temp.toString()
+                num2 = temp.toString()
+            }
+
+
+        }
+
 
 
     }
@@ -84,7 +110,8 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_num9 -> updateDisplay("9")
             R.id.btn_decimal -> {
                 if (!num2.contains(".")) {
-                    updateDisplay(".")
+                    if(num2.isEmpty()) updateDisplay("0.")
+                    else updateDisplay(".")
                 }
             }
         }

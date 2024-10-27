@@ -3,6 +3,7 @@ package com.example.calculadora
 import android.os.Bundle
 import android.view.TextureView
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,35 @@ class MainActivity : AppCompatActivity() {
 
         tv_num1 = findViewById(R.id.tv_num1)
         tv_num2 = findViewById(R.id.tv_num2)
+        val btnBorrarTodo: Button = findViewById(R.id.btn_clear)
+        val btnResult: Button = findViewById(R.id.btn_result)
+
+        btnResult.setOnClickListener{
+            var numero2: Double = tv_num2.text.toString().toDouble()
+            var result: Double = 0.0
+
+            when (op){
+                1 -> result = numero1 + numero2
+                2 -> result = numero1 - numero2
+                3 -> result = numero1 * numero2
+                4 -> {
+                    if (numero2 != 0.0) result = numero1 / numero2
+                    else result = Double.NaN
+                }
+            }
+
+            tv_num2.setText(result.toString())
+            tv_num1.setText("")
+            num2 = ""
+        }
+
+        btnBorrarTodo.setOnClickListener{
+            tv_num1.setText("")
+            tv_num2.setText("")
+            numero1 = 0.0
+            op = 0
+        }
+
 
     }
 
@@ -85,6 +115,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.btn_div -> {
                     tv_num1.text = "$num2_text/"
                     op = 4
+                }
+                R.id.btn_result -> {
+
                 }
             }
         }

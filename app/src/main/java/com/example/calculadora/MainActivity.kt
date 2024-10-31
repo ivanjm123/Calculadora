@@ -83,8 +83,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-
     }
 
 
@@ -127,20 +125,20 @@ class MainActivity : AppCompatActivity() {
 
             when (view.id){
                 R.id.btn_suma -> {
-                    tv_num1.text = "$num2_text+"
+                    tv_num1.text = "$num2_text +"
                     // ALT PEOR: tv_num1.setText(num2_text + "+")
                     op = 1
                 }
                 R.id.btn_resta -> {
-                    tv_num1.text = "$num2_text-"
+                    tv_num1.text = "$num2_text -"
                     op = 2
                 }
                 R.id.btn_mult -> {
-                    tv_num1.text = "$num2_text*"
+                    tv_num1.text = "$num2_text *"
                     op = 3
                 }
                 R.id.btn_div -> {
-                    tv_num1.text = "$num2_text/"
+                    tv_num1.text = "$num2_text /"
                     op = 4
                 }
                 R.id.btn_result -> {
